@@ -1,5 +1,7 @@
 from django import forms
 from .models import CustomUser
+from django.contrib.auth import authenticate
+
 
 class CustomerSignUpForm(forms.ModelForm):
     class Meta:
@@ -19,9 +21,6 @@ class CustomerSignUpForm(forms.ModelForm):
         if commit:
             user.save()
         return user
-
-
-from django.contrib.auth import authenticate
 
 
 class CustomerLoginForm(forms.Form):
@@ -45,4 +44,3 @@ class CustomerLoginForm(forms.Form):
             cleaned_data['user'] = user
 
         return cleaned_data
-

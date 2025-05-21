@@ -1,6 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.db import models
 
+
+######################################
+# pain_mostafa
+######################################
 class CustomUserManager(BaseUserManager):
     def create_user(self, username, phone_number, **extra_fields):
         if not phone_number:
@@ -19,6 +24,7 @@ class CustomUserManager(BaseUserManager):
         user.set_password(password)  # superuser password
         user.save(using=self._db)
         return user
+
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     ROLE_CHOICES = (

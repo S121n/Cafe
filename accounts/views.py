@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.contrib.auth import login
 from .forms import CustomerLoginForm
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+
 
 def customer_signup_view(request):
     if request.method == 'POST':
@@ -15,7 +17,6 @@ def customer_signup_view(request):
     else:
         form = CustomerSignUpForm()
     return render(request, 'signup.html', {'form': form})
-
 
 
 def customer_login_view(request):
@@ -30,16 +31,12 @@ def customer_login_view(request):
     return render(request, 'login.html', {'form': form})
 
 
-
-
 def customer_logout_view(request):
     logout(request)
-    return redirect('home') 
+    return redirect('home')
 
-from django.contrib.auth.decorators import login_required
 
 @login_required
 def profile_view(request):
     user = request.user
     return render(request, 'profile.html', {'user': user})
-
