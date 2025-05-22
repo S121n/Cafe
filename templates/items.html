@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% item.name %}</title>
+</head>
+<body>
+    {% for item in category.items.all %}
+          <div class="menu-item">
+              {% if item.image %}
+                    <img src="{{ item.image.url }}" alt="{{ item.name }}">
+              {% endif %}
+              <div class="menu-item-content">
+                  <div class="item-name">{{ item.name }}</div>
+                  <div class="item-description">{{ item.description }}</div>
+                  <div class="item-price">{{ item.price }} تومان</div>
+                  {% if not item.is_available %}
+                  <div class="not-available">ناموجود</div>
+                  {% endif %}
+
+              </div>
+          </div>
+          {% endfor %}
+</body>
+</html>

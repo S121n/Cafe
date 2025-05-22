@@ -1,32 +1,60 @@
+
+
+
+<!--      {% for category in categories %}-->
+<!--      <div class="menu-section">-->
+<!--          <div class="category-title">{{ category.name }}</div>-->
+
+<!--{% load static %}-->
+<!--          </div>-->
+<!--          {% endfor %}-->
+
+
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
   <head>
-      <meta charset="UTF-8">
-      <title>منوی رستوران</title>
       {% load static %}
-      <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <meta charset="UTF-8">
+    <title>منوی کافه</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/menu.css">
   </head>
   <body>
-      {% for category in categories %}
-      <div class="menu-section">
-          <div class="category-title">{{ category.name }}</div>
-
-          {% for item in category.items.all %}
-          <div class="menu-item">
-              {% if item.image %}
-              <img src="{{ item.image.url }}" alt="{{ item.name }}">
-              {% endif %}
-              <div class="menu-item-content">
-                  <div class="item-name">{{ item.name }}</div>
-                  <div class="item-description">{{ item.description }}</div>
-                  <div class="item-price">{{ item.price }} تومان</div>
-                  {% if not item.is_available %}
-                  <div class="not-available">ناموجود</div>
-                  {% endif %}
-              </div>
-          </div>
-          {% endfor %}
+    <header class="header">
+      <div class="header-right">
+        <a href="/profile" class="icon-button">
+          <i class="fas fa-user"></i>
+          <span>پروفایل</span>
+        </a>
       </div>
-      {% endfor %}
+      <div class="header-center">
+        <img src="/media/images/logo.png" alt="لوگو" class="logo">
+      </div>
+      <div class="header-left">
+        <div class="credit">اعتبار: -- تومان</div>
+        <a href="/cart" class="icon-button">
+          <i class="fas fa-shopping-basket"></i>
+          <span>سبد خرید</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="categories-grid">
+        {% for category in categories %}
+        <div class="category-card">
+          <span>{{ category.name }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-telegram"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </footer>
   </body>
 </html>
